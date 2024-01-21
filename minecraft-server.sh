@@ -132,9 +132,9 @@ if [ $choice -eq 1 ]; then
 #check if choice is 2
 elif [ $choice -eq 2 ]; then
     #install plugins [geysermc,floodgate , Playit.gg]
-    wget https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar -O Geyser-Spigot.jar
-    wget https://ci.opencollab.dev/job/GeyserMC/job/Floodgate/job/master/lastSuccessfulBuild/artifact/floodgate-bukkit/target/Floodgate-Bukkit.jar -O Floodgate-Bukkit.jar
-    wget https://ci.opencollab.dev/job/GeyserMC/job/PlayItGG/job/master/lastSuccessfulBuild/artifact/playit-core/target/PlayIt-Core.jar -O PlayIt-Core.jar
+    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser-Spigot.jar
+    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate-Bukkit.jar
+    wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayIt-gg.jar
 #check if choice is 3
 elif [ $choice -eq 3 ]; then
     #install plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]
@@ -142,9 +142,9 @@ elif [ $choice -eq 3 ]; then
     wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar
     wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
     wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
-    wget https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar -O Geyser-Spigot.jar
-    wget https://ci.opencollab.dev/job/GeyserMC/job/Floodgate/job/master/lastSuccessfulBuild/artifact/floodgate-bukkit/target/Floodgate-Bukkit.jar -O Floodgate-Bukkit.jar
-    wget https://ci.opencollab.dev/job/GeyserMC/job/PlayItGG/job/master/lastSuccessfulBuild/artifact/playit-core/target/PlayIt-Core.jar -O PlayIt-Core.jar
+    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser-Spigot.jar
+    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate-Bukkit.jar
+    wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayIt-gg.jar
 else
     echo "Invalid choice"
     exit 1
