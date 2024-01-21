@@ -119,6 +119,7 @@ cd plugins
 echo "1. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus]"
 echo "2. plugins to install [geysermc,floodgate , Playit.gg]"
 echo "3. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]"
+echo "4. None"
 
 read -p "Enter your choice: " choice
 #install plugins
@@ -145,6 +146,10 @@ elif [ $choice -eq 3 ]; then
     wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser-Spigot.jar
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate-Bukkit.jar
     wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayIt-gg.jar
+#check if choice is 4
+elif [ $choice -eq 4 ]; then
+    #do nothing
+    echo "Nothing to install"
 else
     echo "Invalid choice"
     exit 1
