@@ -1,5 +1,23 @@
 #!/bin/sh
 #create a directory for the server
+# create readme.md
+cat > README.md <<EOF
+# Minecraft Purpur Server
+## How to start the server
+~Run ./purpur-mc.sh start
+Enjoy
+## How to stop the server
+~Run ./purpur-mc.sh stop
+## How to restart the server
+~Run ./purpur-mc.sh restart
+## How to update the server
+~Run ./purpur-mc.sh stop
+~Run ./purpur-mc.sh start
+## How to install plugins
+1. Go to plugins directory
+2. Download the plugin
+3. Restart the server
+EOF
 mkdir ~/minecraft-purpur-server
 cd ~/minecraft-purpur-server
 #download the latest purpur jar
@@ -34,6 +52,14 @@ fi
 cat > purpur-mc.sh <<EOF
 #!/bin/sh
 # Path: purpur-mc.sh
+#install server
+#check if purpur.jar exists
+if [ ! -f purpur.jar ]; then
+    echo "purpur.jar not found"
+    echo "Downloading purpur.jar"
+    wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
+fi
+
 #start the server
 
 start() {
@@ -68,56 +94,6 @@ EOF
 
 #make purpur-mc.sh executable
 chmod +x purpur-mc.sh
-#make directory plugins
-mkdir plugins
-# Write eula.txt
-cat > eula.txt <<EOF
-#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
-#Sun Oct 17 18:37:28 UTC 2021
-eula=true
-EOF
-
-
-
-# create readme.md
-cat > README.md <<EOF
-# Minecraft Purpur Server
-## How to start the server
-~Run ./purpur-mc.sh start
-Enjoy
-## How to stop the server
-~Run ./purpur-mc.sh stop
-## How to restart the server
-~Run ./purpur-mc.sh restart
-## How to update the server
-~Run ./purpur-mc.sh stop
-~Run ./purpur-mc.sh start
-## How to install plugins
-1. Go to plugins directory
-2. Download the plugin
-3. Restart the server
-EOF
-
-
-
-#download latest plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg ]
-cd plugins
-
-# wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
-
-# wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar 
-
-# wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
-
-# wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
-
-wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
-
-wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
-
-wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
-
-cd ../
 
 ./purpur-mc.sh start
 
