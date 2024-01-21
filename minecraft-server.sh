@@ -1,6 +1,6 @@
 #!/bin/sh
 #create a directory for the server
-mkdir ~/minecraft-purpur-server || cd ./minecraft-purpur-server
+mkdir ~/minecraft-purpur-server || mkdir ./minecraft-purpur-server
 cd ~/minecraft-purpur-server || cd ./minecraft-purpur-server
 #download the latest purpur jar
 wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
