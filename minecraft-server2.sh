@@ -35,6 +35,7 @@ cat > purpur-mc.sh <<EOF
 #!/bin/sh
 # Path: purpur-mc.sh
 #start the server
+
 start() {
     java -Xms1G -Xmx1G -jar purpur.jar nogui
 }
@@ -119,4 +120,5 @@ wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/
 
 wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
 
+./purpur-mc.sh restart
 
