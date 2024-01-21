@@ -86,9 +86,6 @@ cat > eula.txt <<EOF
 eula=true
 EOF
 
-#run purpur-mc.sh
-./purpur-mc.sh start
-
 # create readme.md
 cat > README.md <<EOF
 # Minecraft Purpur Server
@@ -116,6 +113,7 @@ eula=true
 EOF
 #download latest plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg ]
 cd plugins
+#input choice shoud stay in front of terminal
 
 # take input from user for plugins to install 
 echo "1. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus]"
@@ -151,3 +149,6 @@ else
     echo "Invalid choice"
     exit 1
 fi
+
+#run purpur-mc.sh
+./purpur-mc.sh start
