@@ -47,21 +47,21 @@ JAVA_EXECUTABLE="/usr/bin/java"
 PURPUR_JAR="purpur.jar"
 SERVER_OPTS=""
 
-case "$1" in
+case "\$1" in
   start)
-    $JAVA_EXECUTABLE -Xmx2G -jar $PURPUR_JAR $SERVER_OPTS &
+    \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS &
     ;;
   stop)
-    pid=$(pgrep -f $PURPUR_JAR)
-    kill $pid
+    pid=\$(pgrep -f \$PURPUR_JAR)
+    kill \$pid
     ;;
   restart)
-    $0 stop
+    \$0 stop
     sleep 2
-    $0 start
+    \$0 start
     ;;
   *)
-    echo "Usage: $0 {start|stop|restart}"
+    echo "Usage: \$0 {start|stop|restart}"
     exit 1
     ;;
 esac
