@@ -4,8 +4,10 @@ mkdir ~/minecraft-purpur-server
 cd ~/minecraft-purpur-server
 #download the latest purpur jar
 wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
+
 #install java
 #check if java is installed
+
 if ! command -v java &> /dev/null
 then
     #install java 17
@@ -97,7 +99,7 @@ cat > eula.txt <<EOF
 eula=true
 EOF
 
-# cfreate reeadme.md
+# create readme.md
 cat > README.md <<EOF
 # Minecraft Purpur Server
 ## How to start the server
