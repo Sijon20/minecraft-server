@@ -12,12 +12,16 @@ if ! command -v java &> /dev/null
 then
     #install java 17
 
-    #check linux distro [redhat, debian, arch , alpine ]
+    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
     if [ -f /etc/redhat-release ]; then
         #redhat
         sudo dnf install java-17-openjdk
     elif [ -f /etc/debian_version ]; then
         #debian
+        sudo apt install openjdk-17-jdk
+    #check if ubuntu
+    elif [ -f /etc/lsb-release ]; then
+        #ubuntu
         sudo apt install openjdk-17-jdk
     elif [ -f /etc/arch-release ]; then
         #arch
@@ -199,4 +203,3 @@ fi
 cd ..
 #run purpur-mc.sh
 ./purpur-mc.sh start
-
