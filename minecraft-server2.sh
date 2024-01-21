@@ -77,12 +77,6 @@ cat > eula.txt <<EOF
 eula=true
 EOF
 
-#run purpur-mc.sh
-./purpur-mc.sh start
-
-#stop the server
-./purpur-mc.sh stop
-
 
 
 # create readme.md
@@ -122,6 +116,8 @@ wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/lat
 wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
 
 wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
+
+cd ../
 
 ./purpur-mc.sh start
 
