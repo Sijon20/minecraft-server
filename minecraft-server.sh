@@ -117,21 +117,37 @@ EOF
 #download latest plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg ]
 cd plugins
 
-# wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
+# take input from user for plugins to install 
+echo "1. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus]"
+echo "2. plugins to install [geysermc,floodgate , Playit.gg]"
+echo "3. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]"
 
-# wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar 
-
-# wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
-
-# wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
-
-wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
-
-wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
-
-wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
-
-
-
-
-
+read -p "Enter your choice: " choice
+#install plugins
+#check if choice is 1
+if [ $choice -eq 1 ]; then
+    #install plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus]
+    wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
+    wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar
+    wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
+    wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
+#check if choice is 2
+elif [ $choice -eq 2 ]; then
+    #install plugins [geysermc,floodgate , Playit.gg]
+    wget https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar -O Geyser-Spigot.jar
+    wget https://ci.opencollab.dev/job/GeyserMC/job/Floodgate/job/master/lastSuccessfulBuild/artifact/floodgate-bukkit/target/Floodgate-Bukkit.jar -O Floodgate-Bukkit.jar
+    wget https://ci.opencollab.dev/job/GeyserMC/job/PlayItGG/job/master/lastSuccessfulBuild/artifact/playit-core/target/PlayIt-Core.jar -O PlayIt-Core.jar
+#check if choice is 3
+elif [ $choice -eq 3 ]; then
+    #install plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]
+    wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
+    wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar
+    wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
+    wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
+    wget https://ci.opencollab.dev/job/GeyserMC/job/Geyser/job/master/lastSuccessfulBuild/artifact/bootstrap/spigot/target/Geyser-Spigot.jar -O Geyser-Spigot.jar
+    wget https://ci.opencollab.dev/job/GeyserMC/job/Floodgate/job/master/lastSuccessfulBuild/artifact/floodgate-bukkit/target/Floodgate-Bukkit.jar -O Floodgate-Bukkit.jar
+    wget https://ci.opencollab.dev/job/GeyserMC/job/PlayItGG/job/master/lastSuccessfulBuild/artifact/playit-core/target/PlayIt-Core.jar -O PlayIt-Core.jar
+else
+    echo "Invalid choice"
+    exit 1
+fi
