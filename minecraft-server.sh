@@ -47,7 +47,7 @@ cat > purpur-mc.sh <<EOF
 # Description:       Start, stop, and restart the Purpur Minecraft server.
 ### END INIT INFO
 
-JAVA_EXECUTABLE="java"
+JAVA_EXECUTABLE="/usr/bin/java"
 PURPUR_JAR="purpur.jar"
 SERVER_OPTS=""
 
