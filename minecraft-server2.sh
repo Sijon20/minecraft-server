@@ -80,6 +80,9 @@ EOF
 #run purpur-mc.sh
 ./purpur-mc.sh start
 
+#stop the server
+./purpur-mc.sh stop
+
 
 
 # create readme.md
@@ -120,5 +123,5 @@ wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/
 
 wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
 
-./purpur-mc.sh restart
+./purpur-mc.sh start
 
