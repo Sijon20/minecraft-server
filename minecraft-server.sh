@@ -49,7 +49,7 @@ SERVER_OPTS=""
 
 case "\$1" in
   start)
-    \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS &
+    \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui &
     ;;
   stop)
     pid=\$(pgrep -f \$PURPUR_JAR)
