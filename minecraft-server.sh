@@ -184,7 +184,7 @@ then
     #install floodgate
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
     #install Playit.gg
-    wget
+    wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayItGG.jar
 #check if choice is 6
 elif [ $choice -eq 6 ]
 then
@@ -199,3 +199,4 @@ fi
 cd ..
 #run purpur-mc.sh
 ./purpur-mc.sh start
+
