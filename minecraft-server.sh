@@ -149,6 +149,8 @@ else
     echo "Invalid choice"
     exit 1
 fi
-
+ 
+#go back to server directory
+cd ../
 #run purpur-mc.sh
 ./purpur-mc.sh start
