@@ -69,33 +69,17 @@ EOF
 chmod +x purpur-mc.sh
 #make directory plugins
 mkdir plugins
-#run purpur-mc.sh
-./purpur-mc.sh start
-
-
-#download latest plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg ]
-cd plugins
-
-# wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
-
-# wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar 
-
-# wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
-
-# wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
-
-wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
-
-wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
-
-wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
-
 # Write eula.txt
 cat > eula.txt <<EOF
 #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
 #Sun Oct 17 18:37:28 UTC 2021
 eula=true
 EOF
+
+#run purpur-mc.sh
+./purpur-mc.sh start
+
+
 
 # create readme.md
 cat > README.md <<EOF
@@ -115,4 +99,24 @@ Enjoy
 2. Download the plugin
 3. Restart the server
 EOF
+
+
+
+#download latest plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg ]
+cd plugins
+
+# wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
+
+# wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar 
+
+# wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
+
+# wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
+
+wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
+
+wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+
+wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O Playit-gg.jar
+
 
