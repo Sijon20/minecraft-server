@@ -60,8 +60,16 @@ case "\$1" in
     sleep 2
     \$0 start
     ;;
+    status)
+    pid=\$(pgrep -f \$PURPUR_JAR)
+    if [ -z "\$pid" ]; then
+      echo "Purpur is not running."
+    else
+      echo "Purpur is running with PID \$pid."
+    fi
+    ;;
   *)
-    echo "Usage: \$0 {start|stop|restart}"
+    echo "Usage: \$0 {start|stop|restart|status}"
     exit 1
     ;;
 esac
