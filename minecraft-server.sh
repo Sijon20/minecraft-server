@@ -116,44 +116,84 @@ cd plugins
 #input choice shoud stay in front of terminal
 
 # take input from user for plugins to install 
-echo "1. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus]"
-echo "2. plugins to install [geysermc,floodgate , Playit.gg]"
-echo "3. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]"
-echo "4. None"
+echo "1. plugins to install [geysermc,floodgate]"
+echo "2. plugins to install [geysermc,floodgate, Playit.gg]"
+echo "3. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus]"
+echo "4. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate]"
+echo "5. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]"
+echo "6. None"
 
 read -p "Enter your choice: " choice
 #install plugins
+#check choice and install plugins
 #check if choice is 1
-if [ $choice -eq 1 ]; then
-    #install plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus]
-    wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
-    wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar
-    wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
-    wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
+if [ $choice -eq 1 ]
+then
+    #install geysermc
+    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
+    #install floodgate
+    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
 #check if choice is 2
-elif [ $choice -eq 2 ]; then
-    #install plugins [geysermc,floodgate , Playit.gg]
-    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser-Spigot.jar
-    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate-Bukkit.jar
-    wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayIt-gg.jar
+elif [ $choice -eq 2 ]
+then
+    #install geysermc
+    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
+    #install floodgate
+    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+    #install Playit.gg
+    wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayItGG.jar
 #check if choice is 3
-elif [ $choice -eq 3 ]; then
-    #install plugins [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]
-    wget https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/jar/target/ViaVersion-4.0.1.jar -O ViaVersion.jar
-    wget https://ci.viaversion.com/job/ViaBackwards/lastSuccessfulBuild/artifact/jar/target/ViaBackwards-4.0.1.jar -O ViaBackwards.jar
-    wget https://ci.viaversion.com/job/ViaRewind/lastSuccessfulBuild/artifact/jar/target/ViaRewind-4.0.1.jar -O ViaRewind.jar
-    wget https://ci.viaversion.com/job/ViaVersionStatus/lastSuccessfulBuild/artifact/jar/target/ViaVersionStatus-1.0.0.jar -O ViaVersionStatus.jar
-    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser-Spigot.jar
-    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate-Bukkit.jar
-    wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayIt-gg.jar
+elif [ $choice -eq 3 ]
+then
+    #install viaVersion
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.9.2/PAPER/ViaVersion-4.9.2.jar -O ViaVersion.jar
+    #install viaBackwards
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.9.1/PAPER/ViaBackwards-4.9.1.jar -O ViaBackwards.jar
+    #install viaRewind
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewind/versions/3.0.5/PAPER/ViaRewind-3.0.5.jar -O ViaRewind.jar
+    #install viaVersionStatus
+    wget https://www.spigotmc.org/resources/viaversionstatus.66959/download?version=473639 -O ViaVersionStatus.jar
 #check if choice is 4
-elif [ $choice -eq 4 ]; then
-    #do nothing
-    echo "Nothing to install"
+elif [ $choice -eq 4 ]
+then
+    #install viaVersion
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.9.2/PAPER/ViaVersion-4.9.2.jar -O ViaVersion.jar
+    #install viaBackwards
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.9.1/PAPER/ViaBackwards-4.9.1.jar -O ViaBackwards.jar
+    #install viaRewind
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewind/versions/3.0.5/PAPER/ViaRewind-3.0.5.jar -O ViaRewind.jar
+    #install viaVersionStatus
+    wget https://www.spigotmc.org/resources/viaversionstatus.66959/download?version=473639 -O ViaVersionStatus.jar
+    #install geysermc
+    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
+    #install floodgate
+    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+#check if choice is 5
+elif [ $choice -eq 5 ]
+then
+    #install viaVersion
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.9.2/PAPER/ViaVersion-4.9.2.jar -O ViaVersion.jar
+    #install viaBackwards
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.9.1/PAPER/ViaBackwards-4.9.1.jar -O ViaBackwards.jar
+    #install viaRewind
+    wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewind/versions/3.0.5/PAPER/ViaRewind-3.0.5.jar -O ViaRewind.jar
+    #install viaVersionStatus
+    wget https://www.spigotmc.org/resources/viaversionstatus.66959/download?version=473639 -O ViaVersionStatus.jar
+    #install geysermc
+    wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
+    #install floodgate
+    wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+    #install Playit.gg
+    wget
+#check if choice is 6
+elif [ $choice -eq 6 ]
+then
+    echo "No plugins will be installed"
 else
     echo "Invalid choice"
     exit 1
 fi
+
  
 #go back to server directory
 cd ..
