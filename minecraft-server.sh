@@ -151,6 +151,6 @@ else
 fi
  
 #go back to server directory
-cd ../
+cd ..
 #run purpur-mc.sh
 ./purpur-mc.sh start
