@@ -64,7 +64,7 @@ case "\$1" in
     sleep 2
     \$0 start
     ;;
-  status)
+    status)
     pid=\$(pgrep -f \$PURPUR_JAR)
     if [ -z "\$pid" ]; then
       echo "Purpur is not running."
@@ -72,11 +72,8 @@ case "\$1" in
       echo "Purpur is running with PID \$pid."
     fi
     ;;
-  console)
-    \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS
-    ;;
   *)
-    echo "Usage: \$0 {start|stop|restart|status|console}"
+    echo "Usage: \$0 {start|stop|restart|status}"
     exit 1
     ;;
 esac
