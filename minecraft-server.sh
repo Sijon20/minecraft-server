@@ -4,7 +4,33 @@ mkdir ./minecraft-purpur-server
 cd ./minecraft-purpur-server 
 #download the latest purpur jar
 wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
-
+#install screen
+#check if screen is installed
+if ! command -v screen &> /dev/null
+then
+    #install screen
+    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
+    if [ -f /etc/redhat-release ]; then
+        #redhat
+        sudo dnf install screen
+    elif [ -f /etc/debian_version ]; then
+        #debian
+        sudo apt install screen
+    #check if ubuntu
+    elif [ -f /etc/lsb-release ]; then
+        #ubuntu
+        sudo apt install screen
+    elif [ -f /etc/arch-release ]; then
+        #arch
+        sudo pacman -S screen
+    elif [ -f /etc/alpine-release ]; then
+        #alpine
+        sudo apk add screen
+    else
+        echo "Unsupported linux distro"
+        exit 1
+    fi
+fi
 
 #install java
 #check if java is installed
@@ -44,8 +70,8 @@ cat > purpur-mc.sh <<EOF
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          purpur
-# Required-Start:    \$remote_fs \$syslog
-# Required-Stop:     \$remote_fs \$syslog
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Purpur Minecraft Server
@@ -149,7 +175,8 @@ echo "4. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,g
 echo "5. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]"
 echo "6. None"
 
-read -p "Enter your choice: " choice
+while true:do
+    read -p "Enter your choice: " choice
 #install plugins
 #check choice and install plugins
 #check if choice is 1
@@ -159,6 +186,7 @@ then
     wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
     #install floodgate
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+    break
 #check if choice is 2
 elif [ $choice -eq 2 ]
 then
@@ -168,6 +196,7 @@ then
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
     #install Playit.gg
     wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayItGG.jar
+    break
 #check if choice is 3
 elif [ $choice -eq 3 ]
 then
@@ -179,6 +208,7 @@ then
     wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewind/versions/3.0.5/PAPER/ViaRewind-3.0.5.jar -O ViaRewind.jar
     #install viaVersionStatus
     wget https://www.spigotmc.org/resources/viaversionstatus.66959/download?version=473639 -O ViaVersionStatus.jar
+    break
 #check if choice is 4
 elif [ $choice -eq 4 ]
 then
@@ -194,6 +224,7 @@ then
     wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
     #install floodgate
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+    break
 #check if choice is 5
 elif [ $choice -eq 5 ]
 then
@@ -211,45 +242,20 @@ then
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
     #install Playit.gg
     wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayItGG.jar
+    break
 #check if choice is 6
 elif [ $choice -eq 6 ]
 then
     echo "No plugins will be installed"
+    break
 else
     echo "Invalid choice"
-    exit 1
+    
 fi
+done
 
  
 #go back to server directory
 cd ..
-
-#install screen
-#check if screen is installed
-if ! command -v screen &> /dev/null
-then
-    #install screen
-    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
-    if [ -f /etc/redhat-release ]; then
-        #redhat
-        sudo dnf install screen
-    elif [ -f /etc/debian_version ]; then
-        #debian
-        sudo apt install screen
-    #check if ubuntu
-    elif [ -f /etc/lsb-release ]; then
-        #ubuntu
-        sudo apt install screen
-    elif [ -f /etc/arch-release ]; then
-        #arch
-        sudo pacman -S screen
-    elif [ -f /etc/alpine-release ]; then
-        #alpine
-        sudo apk add screen
-    else
-        echo "Unsupported linux distro"
-        exit 1
-    fi
-fi
 #run purpur-mc.sh
 ./purpur-mc.sh start
