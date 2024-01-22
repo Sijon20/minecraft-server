@@ -1,16 +1,9 @@
-# minecraft-server cli
 
-###install sh file
 ```
 wget https://raw.githubusercontent.com/Sijon20/minecraft-server/main/minecraft-server.sh -O minecraft-server.sh && chmod +x minecraft-server.sh
-
-```
-###run 
-```
-./minecraft-server.sh
 ```
 
-```markdown
+
 # Minecraft Purpur Server Management Script
 
 This Bash script is designed to simplify the management of a Minecraft server using the Purpur software. It includes functionalities for starting, stopping, restarting, checking the status, and accessing the console of the server.
