@@ -4,33 +4,7 @@ mkdir ./minecraft-purpur-server
 cd ./minecraft-purpur-server 
 #download the latest purpur jar
 wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
-#install screen
-#check if screen is installed
-if ! command -v screen &> /dev/null
-then
-    #install screen
-    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
-    if [ -f /etc/redhat-release ]; then
-        #redhat
-        sudo dnf install screen
-    elif [ -f /etc/debian_version ]; then
-        #debian
-        sudo apt install screen
-    #check if ubuntu
-    elif [ -f /etc/lsb-release ]; then
-        #ubuntu
-        sudo apt install screen
-    elif [ -f /etc/arch-release ]; then
-        #arch
-        sudo pacman -S screen
-    elif [ -f /etc/alpine-release ]; then
-        #alpine
-        sudo apk add screen
-    else
-        echo "Unsupported linux distro"
-        exit 1
-    fi
-fi
+
 
 #install java
 #check if java is installed
@@ -61,7 +35,33 @@ then
         exit 1
     fi
 fi
-
+#install screen
+#check if screen is installed
+if ! command -v screen &> /dev/null
+then
+    #install screen
+    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
+    if [ -f /etc/redhat-release ]; then
+        #redhat
+        sudo dnf install screen
+    elif [ -f /etc/debian_version ]; then
+        #debian
+        sudo apt install screen
+    #check if ubuntu
+    elif [ -f /etc/lsb-release ]; then
+        #ubuntu
+        sudo apt install screen
+    elif [ -f /etc/arch-release ]; then
+        #arch
+        sudo pacman -S screen
+    elif [ -f /etc/alpine-release ]; then
+        #alpine
+        sudo apk add screen
+    else
+        echo "Unsupported linux distro"
+        exit 1
+    fi
+fi
 
 
 
@@ -70,8 +70,8 @@ cat > purpur-mc.sh <<EOF
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          purpur
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
+# Required-Start:    \$remote_fs \$syslog
+# Required-Stop:     \$remote_fs \$syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Purpur Minecraft Server
