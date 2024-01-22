@@ -1,99 +1,76 @@
-#!/bin/sh
-#create a directory for the server
-# create readme.md
-cat > README.md <<EOF
-# Minecraft Purpur Server
-## How to start the server
-~Run ./purpur-mc.sh start
-Enjoy
-## How to stop the server
-~Run ./purpur-mc.sh stop
-## How to restart the server
-~Run ./purpur-mc.sh restart
-## How to update the server
-~Run ./purpur-mc.sh stop
-~Run ./purpur-mc.sh start
-## How to install plugins
-1. Go to plugins directory
-2. Download the plugin
-3. Restart the server
-EOF
-mkdir ~/minecraft-purpur-server
-cd ~/minecraft-purpur-server
-#download the latest purpur jar
-wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
+#!/bin/bash
 
-#install java
-#check if java is installed
+PURPUR_JAR="purpur.jar"
+SERVER_OPTS=""
+SCREEN_NAME="purpur-mc"
+JAVA_EXECUTABLE="java" # Make sure to set this to your Java path
 
-if ! command -v java &> /dev/null
-then
-    #install java 17
-
-    #check linux distro [redhat, debian, arch , alpine ]
-    if [ -f /etc/redhat-release ]; then
-        #redhat
-        sudo dnf install java-17-openjdk
-    elif [ -f /etc/debian_version ]; then
-        #debian
-        sudo apt install openjdk-17-jdk
-    elif [ -f /etc/arch-release ]; then
-        #arch
-        sudo pacman -S jdk-openjdk
-    elif [ -f /etc/alpine-release ]; then
-        #alpine
-        sudo apk add openjdk17
-    else
-        echo "Unsupported linux distro"
-        exit 1
+# Function to check if screen is installed
+function check_screen {
+    if ! command -v screen &> /dev/null
+    then
+        echo "Screen could not be found. Please install it and run the script again."
+        exit
     fi
-fi
-# creat purpur-mc.sh that will be constent  "script to start, stop, restart the server"
-cat > purpur-mc.sh <<EOF
-#!/bin/sh
-# Path: purpur-mc.sh
-#install server
-#check if purpur.jar exists
-if [ ! -f purpur.jar ]; then
-    echo "purpur.jar not found"
-    echo "Downloading purpur.jar"
-    wget https://api.purpurmc.org/v2/purpur/1.20.4/latest/download -O purpur.jar
-fi
-
-#start the server
-
-start() {
-    java -Xms1G -Xmx1G -jar purpur.jar nogui
 }
-#stop the server
-stop() {
-    screen -S minecraft -X stuff "stop^M"
-}
-#restart the server
-restart() {
-    stop
-    start
-}
-#check if the server is running
-status() {
-    screen -list | grep -q "minecraft" && echo "Server is running" || echo "Server is not running"
-}
-#check if the server is running
-if [ "\$1" = "start" ]; then
-    start
-elif [ "\$1" = "stop" ]; then
-    stop
-elif [ "\$1" = "restart" ]; then
-    restart
-elif [ "\$1" = "status" ]; then
-    status
-else
-    echo "Usage: ./purpur-mc.sh [start|stop|restart|status]"
-fi
-EOF
 
-#make purpur-mc.sh executable
-chmod +x purpur-mc.sh
+# Function to check if Java is installed
+function check_java {
+    if ! command -v $JAVA_EXECUTABLE &> /dev/null
+    then
+        echo "Java could not be found. Please install it and run the script again."
+        exit
+    fi
+}
 
-./purpur-mc.sh start
+# Function to check if Purpur jar exists
+function check_purpur {
+    if [ ! -f $PURPUR_JAR ]; 
+    then
+        echo "Enter Purpur version to download (e.g. 1.17.1):"
+        read purpur_version
+        echo "Enter Purpur build to download (e.g. 100):"
+        read purpur_build
+        #if wget throws an error, exit the script
+        wget https://api.pl3x.net/v2/purpur/$purpur_version/$purpur_build/download -O $PURPUR_JAR || echo "Purpur jar file could not be found. Please make sure it's in the same directory as this script."
+        exit
+    fi
+}
 
+check_screen
+check_java
+check_purpur
+
+case "$1" in
+  start)
+    screen -q -S $SCREEN_NAME -dm $JAVA_EXECUTABLE -Xmx2G -jar $PURPUR_JAR $SERVER_OPTS nogui
+    ;;
+  stop)
+    if pgrep -f $SCREEN_NAME > /dev/null
+    then
+        pkill -f $SCREEN_NAME
+    else
+        echo "Server is not currently running."
+    fi
+    ;;
+  restart)
+    $0 stop
+    sleep 2
+    $0 start
+    ;;
+  status)
+    if pgrep -f $SCREEN_NAME > /dev/null
+    then
+        echo "Server is running."
+    else
+        echo "Server is not currently running."
+    fi
+    ;;
+  console)
+    screen -r $SCREEN_NAME
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status|console}"
+    exit 1
+    ;;
+esac
