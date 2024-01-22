@@ -35,7 +35,7 @@ function check_purpur {
         echo "Enter Purpur build to download (e.g. 100):"
         read purpur_build
         #if wget throws an error, exit the script
-        wget https://api.purpurmc.org/v2/purpur/$purpur_version/$purpur_build/download || echo "ERORR : Purpur jar file could not be found. Please make sure it's in the same directory as this script."
+        wget https://api.purpurmc.org/v2/purpur/$purpur_version/$purpur_build/download -O $PURPUR_JAR || echo "ERORR : Purpur jar file could not be found. Please make sure it's in the same directory as this script."
         exit
     fi
 }
