@@ -1,8 +1,4 @@
 
-```
-wget https://raw.githubusercontent.com/Sijon20/minecraft-server/main/minecraft-server.sh -O minecraft-server.sh && chmod +x minecraft-server.sh
-```
-
 
 # Minecraft Purpur Server Management Script
 
@@ -23,16 +19,22 @@ Before using this script, ensure that the following dependencies are installed:
    git clone https://github.com/your-username/your-repository.git
    cd your-repository
    ```
+   or
+   
+```
+wget https://raw.githubusercontent.com/Sijon20/minecraft-server/main/minecraft-server.sh -O your_script_name.sh
+```
 
-2. Set the executable permission for the script:
+
+3. Set the executable permission for the script:
 
    ```bash
    chmod +x your_script_name.sh
    ```
 
-3. Open the script in a text editor to customize the configuration variables if needed.
+4. Open the script in a text editor to customize the configuration variables if needed.
 
-4. Run the script with the desired command:
+5. Run the script with the desired command:
 
    ```bash
    ./your_script_name.sh start
