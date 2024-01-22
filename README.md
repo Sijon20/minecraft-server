@@ -12,8 +12,12 @@ Before using this script, ensure that the following dependencies are installed:
 - `Java`: The Java Runtime Environment (JRE) is required to execute the Minecraft server.
 
 ## Getting Started
+1. Create directory for your minecraft sever
+   ```
+   mkdir server-name
+   ``` 
 
-1. Clone this repository to your local machine:
+2. Clone this repository to your local machine:
 
    ```bash
    git clone https://github.com/your-username/your-repository.git
