@@ -81,11 +81,12 @@ cat > purpur-mc.sh <<EOF
 JAVA_EXECUTABLE="/usr/bin/java"
 PURPUR_JAR="purpur.jar"
 SERVER_OPTS=""
+SCREEN_NAME="purpur-mc"
 
 
 case "\$1" in
   start)
-    \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui &
+    screen -S \$SCREEN_NAME -dm \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui
     ;;
   stop)
     pid=\$(pgrep -f \$PURPUR_JAR)
