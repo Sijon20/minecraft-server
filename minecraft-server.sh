@@ -43,6 +43,23 @@ function check_purpur {
 check_screen
 check_java
 check_purpur
+echo "More info Check README.md"
+#create README.md
+cat > README.md <<EOF
+# Purpur Minecraft Server
+purpur-mc(you install) is a script to manage your Purpur Minecraft server using screen.
+## How to use
+### Start
+./purpur-mc.sh start
+### Stop
+./purpur-mc.sh stop
+### Restart
+./purpur-mc.sh restart
+### Status
+./purpur-mc.sh status
+### Console
+./purpur-mc.sh console
+EOF
 
 #create eula.txt
 cat > eula.txt <<EOF
