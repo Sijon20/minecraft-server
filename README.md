@@ -20,10 +20,9 @@ Before using this script, ensure that the following dependencies are installed:
    cd your-repository
    ```
    or
-   
-```
-wget https://raw.githubusercontent.com/Sijon20/minecraft-server/main/minecraft-server.sh -O your_script_name.sh
-```
+   ```
+   wget https://raw.githubusercontent.com/Sijon20/minecraft-server/main/minecraft-server.sh -O your_script_name.sh
+   ```
 
 
 3. Set the executable permission for the script:
