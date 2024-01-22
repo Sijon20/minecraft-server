@@ -38,9 +38,13 @@ Before using this script, ensure that the following dependencies are installed:
 
 4. Open the script in a text editor to customize the configuration variables if needed.
 
-5. Run the script with the desired command:
+5. Run the script with the desired command for initial install:
 
    ```bash
+   ./your_script_name.sh 
+   ```
+6. start the server :
+   ```
    ./your_script_name.sh start
    ```
 
