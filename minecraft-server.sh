@@ -61,6 +61,10 @@ then
         exit 1
     fi
 fi
+
+
+
+
 # creat purpur-mc.sh that will be constent  "script"
 cat > purpur-mc.sh <<EOF
 #!/bin/sh
@@ -78,10 +82,6 @@ JAVA_EXECUTABLE="/usr/bin/java"
 PURPUR_JAR="purpur.jar"
 SERVER_OPTS=""
 
-# Send a command to the server
-if [ -n "\$cmd" ]; then
-    screen -S minecraft -p 0 -X stuff "\$cmd\$(printf \\r)"
-fi
 
 case "\$1" in
   start)
@@ -104,9 +104,12 @@ case "\$1" in
       echo "Purpur is running with PID \$pid."
     fi
     ;;
+      console)
+    screen -r \$SCREEN_NAME
+    ;;
     
   *)
-    echo "Usage: \$0 {start|stop|restart|status|cmd}"
+    echo "Usage: \$0 {start|stop|restart|status|console}"
     exit 1
     ;;
 esac
