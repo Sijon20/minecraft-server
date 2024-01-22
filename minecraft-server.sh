@@ -243,8 +243,7 @@ then
     echo "No plugins will be installed"
 else
     echo "Invalid choice"
-    break
-    
+    exit 1
 fi
 
  
