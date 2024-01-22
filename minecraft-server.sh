@@ -86,7 +86,7 @@ SCREEN_NAME="purpur-mc"
 
 case "\$1" in
   start)
-    screen -S \$SCREEN_NAME -dm \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui
+    screen -q -S \$SCREEN_NAME -dm \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui
     ;;
   stop)
     pid=\$(pgrep -f \$PURPUR_JAR)
@@ -258,4 +258,6 @@ done
 #go back to server directory
 cd ..
 #run purpur-mc.sh
-./purpur-mc.sh start
+./purpur-mc.sh startstart)
+    screen -q -S \$SCREEN_NAME -dm \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui
+    ;;
