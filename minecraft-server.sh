@@ -35,33 +35,7 @@ then
         exit 1
     fi
 fi
-#install screen
-#check if screen is installed
-if ! command -v screen &> /dev/null
-then
-    #install screen
-    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
-    if [ -f /etc/redhat-release ]; then
-        #redhat
-        sudo dnf install screen
-    elif [ -f /etc/debian_version ]; then
-        #debian
-        sudo apt install screen
-    #check if ubuntu
-    elif [ -f /etc/lsb-release ]; then
-        #ubuntu
-        sudo apt install screen
-    elif [ -f /etc/arch-release ]; then
-        #arch
-        sudo pacman -S screen
-    elif [ -f /etc/alpine-release ]; then
-        #alpine
-        sudo apk add screen
-    else
-        echo "Unsupported linux distro"
-        exit 1
-    fi
-fi
+
 
 
 
@@ -249,5 +223,33 @@ fi
  
 #go back to server directory
 cd ..
+
+#install screen
+#check if screen is installed
+if ! command -v screen &> /dev/null
+then
+    #install screen
+    #check linux distro [redhat, debian,ubuntu, arch , alpine ]
+    if [ -f /etc/redhat-release ]; then
+        #redhat
+        sudo dnf install screen
+    elif [ -f /etc/debian_version ]; then
+        #debian
+        sudo apt install screen
+    #check if ubuntu
+    elif [ -f /etc/lsb-release ]; then
+        #ubuntu
+        sudo apt install screen
+    elif [ -f /etc/arch-release ]; then
+        #arch
+        sudo pacman -S screen
+    elif [ -f /etc/alpine-release ]; then
+        #alpine
+        sudo apk add screen
+    else
+        echo "Unsupported linux distro"
+        exit 1
+    fi
+fi
 #run purpur-mc.sh
 ./purpur-mc.sh start
