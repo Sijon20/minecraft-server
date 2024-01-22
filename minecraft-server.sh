@@ -2,7 +2,7 @@
 
 PURPUR_JAR="purpur.jar"
 SERVER_OPTS=""
-SCREEN_NAME="purpur-mc"
+SCREEN_NAME="script"
 JAVA_EXECUTABLE="java" # Make sure to set this to your Java path
 
 # Function to check if screen is installed
@@ -47,18 +47,20 @@ echo "More info Check README.md"
 #create README.md
 cat > README.md <<EOF
 # Purpur Minecraft Server
-purpur-mc(you install) is a script to manage your Purpur Minecraft server using screen.
+script(script file that you installed) is a script to manage your Purpur Minecraft server using screen.
 ## How to use
 ### Start
-./purpur-mc.sh start
+./script.sh start
 ### Stop
-./purpur-mc.sh stop
+./script.sh stop
 ### Restart
-./purpur-mc.sh restart
+./script.sh restart
 ### Status
-./purpur-mc.sh status
+./script.sh status
 ### Console
-./purpur-mc.sh console
+./script.sh console
+## closed console 
+ctrl + a + d
 EOF
 
 #create eula.txt
