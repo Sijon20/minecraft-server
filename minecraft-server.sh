@@ -175,7 +175,8 @@ echo "4. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,g
 echo "5. plugins to install [viaVersion,viaBackwards,viaRewind,viaVersinStatus,geysermc,floodgate , Playit.gg]"
 echo "6. None"
 
-read -p "Enter your choice: " choice
+while true:do
+    read -p "Enter your choice: " choice
 #install plugins
 #check choice and install plugins
 #check if choice is 1
@@ -185,6 +186,7 @@ then
     wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
     #install floodgate
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+    break
 #check if choice is 2
 elif [ $choice -eq 2 ]
 then
@@ -194,6 +196,7 @@ then
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
     #install Playit.gg
     wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayItGG.jar
+    break
 #check if choice is 3
 elif [ $choice -eq 3 ]
 then
@@ -205,6 +208,7 @@ then
     wget https://hangarcdn.papermc.io/plugins/ViaVersion/ViaRewind/versions/3.0.5/PAPER/ViaRewind-3.0.5.jar -O ViaRewind.jar
     #install viaVersionStatus
     wget https://www.spigotmc.org/resources/viaversionstatus.66959/download?version=473639 -O ViaVersionStatus.jar
+    break
 #check if choice is 4
 elif [ $choice -eq 4 ]
 then
@@ -220,6 +224,7 @@ then
     wget https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot -O Geyser.jar
     #install floodgate
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
+    break
 #check if choice is 5
 elif [ $choice -eq 5 ]
 then
@@ -237,14 +242,17 @@ then
     wget https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot -O Floodgate.jar
     #install Playit.gg
     wget https://github.com/playit-cloud/playit-minecraft-plugin/releases/latest/download/playit-minecraft-plugin.jar -O PlayItGG.jar
+    break
 #check if choice is 6
 elif [ $choice -eq 6 ]
 then
     echo "No plugins will be installed"
+    break
 else
     echo "Invalid choice"
-    exit 1
+    
 fi
+done
 
  
 #go back to server directory
