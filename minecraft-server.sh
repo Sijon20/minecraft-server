@@ -129,21 +129,32 @@ EOF
 
 # create readme.md
 cat > README.md <<EOF
-# Minecraft Purpur Server
-## How to start the server
-~Run ./purpur-mc.sh start
-Enjoy
-## How to stop the server
-~Run ./purpur-mc.sh stop
-## How to restart the server
-~Run ./purpur-mc.sh restart
-## How to update the server
-~Run ./purpur-mc.sh stop
-~Run ./purpur-mc.sh start
-## How to install plugins
-1. Go to plugins directory
-2. Download the plugin
-3. Restart the server
+# Minecraft Server Setup Script
+
+This script automates the setup of a Minecraft server using the Purpur server software. It also allows you to choose which plugins to install.
+
+## Usage
+
+1. Make sure you have `screen` installed on your system. You can install it on an Ubuntu system with `sudo apt-get install screen`, or on an Alpine system with `apk add screen`.
+
+2. Run the script with `./minecraft-server.sh`.
+
+3. When prompted, enter the number corresponding to the set of plugins you want to install:
+
+    1. GeyserMC, Floodgate
+    2. GeyserMC, Floodgate, PlayIt.GG
+    3. ViaVersion, ViaBackwards, ViaRewind, ViaVersionStatus
+    4. ViaVersion, ViaBackwards, ViaRewind, ViaVersionStatus, GeyserMC, Floodgate
+    5. ViaVersion, ViaBackwards, ViaRewind, ViaVersionStatus, GeyserMC, Floodgate, PlayIt.GG
+    6. None
+
+4. The script will download the Purpur server software, make it executable, and start the server in a `screen` session.
+
+5. You can attach to the server console with `./purpur-mc.sh console`. To detach from the console and leave the server running, press `Ctrl+A` followed by `D`.
+
+Please note that this script is intended for use on a Linux system with `screen` installed. It may not work correctly on other systems.
+
+
 EOF
 
 # Write eula.txt
