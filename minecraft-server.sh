@@ -126,4 +126,4 @@ esac
 
 EOF
 
-
+chmod +x $server_type-mc.sh
