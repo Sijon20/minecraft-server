@@ -39,7 +39,7 @@ then
     echo "Enter the purpur build "
     read server_build
     #download the purpur jar
-    wget https://api.purpurmc.org/v2/purpur/$server_version/$server_build/download -O purpur.jar
+    wget https://api.purpurmc.org/v2/purpur/$server_version/$server_build/download -O server.jar
 fi
 #check if server type is paper
 if [ $server_type = "paper" ]
