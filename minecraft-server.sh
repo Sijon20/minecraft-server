@@ -85,7 +85,7 @@ EOF
 cat > $server_type-mc.sh <<EOF
 #!/bin/sh
 #start , stop , restart , status, console using screen
-\$SCREEN_NAME="\$S SCREEN_NAME"
+\$SCREEN_NAME="server-console"
 
 case "\$1" in
     start)
