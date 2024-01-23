@@ -27,9 +27,8 @@ RUN wget https://api.purpurmc.org/v2/purpur/${VERSION}/$BUILD/download -O server
 # Create EULA file
 RUN echo "eula=$EULA" > eula.txt
 
-# Create server manager script
-COPY manager-mc.sh .
-RUN chmod +x manager-mc.sh
+# Create server manager script# Download server manager script
+RUN wget https://raw.githubusercontent.com/Sijon20/minecraft-server/main/minecraft-server.sh -O manager-mc.sh && chmod +x manager-mc.sh
 
 # Expose port $PORT and 21
 EXPOSE $PORT 21
