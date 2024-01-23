@@ -85,19 +85,18 @@ EOF
 cat > $server_type-mc.sh <<EOF
 #!/bin/sh
 #start , stop , restart , status, console using screen
-\$SCREEN_NAME="server-console"
 
 
 case "\$1" in
     start)
-        screen -dmS \$SCREEN_NAME java -Xmx1024M -Xms1024M -jar server.jar nogui
+        screen -dmS console java -Xmx1024M -Xms1024M -jar server.jar nogui
         echo "Server started"
         echo "To view the console type ./server_type-mc.sh console"
         ;;
     stop)
-        if pgrep -f \$SCREEN_NAME > /dev/null
+        if pgrep -f console > /dev/null
     then
-        pkill -f \$SCREEN_NAME
+        pkill -f console
         echo "Server stopped"
     else
         echo "Server is not currently running."
@@ -109,7 +108,7 @@ case "\$1" in
         \$0 start
         ;;
     status)
-        if pgrep -f \$SCREEN_NAME > /dev/null
+        if pgrep -f console > /dev/null
     then
         echo "Server is running."
     else
@@ -117,7 +116,7 @@ case "\$1" in
     fi
         ;;
     console)
-        screen -r \$SCREEN_NAME
+        screen -r console
         ;;
     *)
         echo "Usage: \$0 {start|stop|restart|status|console}"
