@@ -1,114 +1,129 @@
-#!/bin/bash
-
-PURPUR_JAR="purpur.jar"
-SERVER_OPTS=""
-SCREEN_NAME="script"
-JAVA_EXECUTABLE="java" # Make sure to set this to your Java path
-
-mkdir server
-cd server
-
+#!/bin/sh
 # Function to check if screen is installed
 function check_screen {
     if ! command -v screen &> /dev/null
     then
-        #echo in red
-        tput setaf 1
-        echo "ERORR : Screen could not be found. Please install it and run the script again."
-        exit
+        echo "ERROR : Screen could not be found. Please install it and run the script again."
+        exit 1
     fi
 }
 
 # Function to check if Java is installed
 function check_java {
-    if ! command -v $JAVA_EXECUTABLE &> /dev/null
+    if ! command -v java &> /dev/null
     then
-        tput setaf 1
         echo "ERORR : Java could not be found. Please install it and run the script again."
-        exit
-    fi
-}
-
-# Function to check if Purpur jar exists
-function check_purpur {
-    if [ ! -f $PURPUR_JAR ]; 
-    then
-        echo "Enter Purpur version to download (e.g. 1.17.1):"
-        read purpur_version
-        echo "Enter Purpur build to download (e.g. 100):"
-        read purpur_build
-        #if wget throws an error, exit the script
-        wget https://api.purpurmc.org/v2/purpur/$purpur_version/$purpur_build/download -O $PURPUR_JAR || echo "ERORR : Purpur jar file could not be found. Please make sure it's in the same directory as this script."
-        exit
+        exit 1
     fi
 }
 
 check_screen
 check_java
-check_purpur
-echo "More info Check README.md"
-#create README.md
-cat > README.md <<EOF
-# Purpur Minecraft Server
-script(script file that you installed) is a script to manage your Purpur Minecraft server using screen.
-## How to use
-### Start
-./script.sh start
-### Stop
-./script.sh stop
-### Restart
-./script.sh restart
-### Status
-./script.sh status
-### Console
-./script.sh console
-## closed console 
-ctrl + a + d
-EOF
 
-#create eula.txt
+#make server directory
+mkdir /home/mincraft-server
+#change directory to server directory
+cd /home/mincraft-server
+
+
+#take user input [purpur, paper, spigot, vanilla] if something else loop
+echo "Enter the server type [purpur, paper, spigot , vanilla]"
+read server_type
+
+#check if server type is purpur
+if [ $server_type = "purpur" ]
+then
+    #take user input [version-build] if something else loop
+    echo "Enter the purpur version "
+    read server_version
+    echo "Enter the purpur build "
+    read server_build
+    #download the purpur jar
+    wget https://api.purpurmc.org/v2/purpur/$server_version/$server_build/download -O purpur.jar
+fi
+#check if server type is paper
+if [ $server_type = "paper" ]
+then
+    #take user input [version-build] if something else loop
+    echo "Enter the paper version "
+    read server_version
+    echo "Enter the paper build "
+    read server_build
+    #download the paper jar
+    wget https://api.papermc.io/v2/projects/paper/versions/$server_version/builds/$server_build/downloads/paper-$server_version-$server_build.jar -O paper.jar
+fi
+#check if server type is spigot
+if [ $server_type = "spigot" ]
+then
+    #take user input [version] if something else loop
+    echo "Enter the spigot version "
+    read server_version
+    #download the spigot jar
+    wget https://download.getbukkit.org/spigot/spigot-$server_version.jar -O spigot.jar
+
+fi
+if [ $server_type = "vanilla" ]
+then
+    #download the vanilla jar
+    wget https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar -O vanilla.jar
+fi
+#check if server type is invalid
+if [ $server_type != "purpur" ] && [ $server_type != "paper" ] && [ $server_type != "spigot" ] && [ $server_type != "vanilla" ]
+then
+    echo "Unsupported server type"
+    exit 1
+fi
+
+#create a eula.txt
 cat > eula.txt <<EOF
 #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
 #Sun Oct 17 18:37:28 UTC 2021
 eula=true
 EOF
 
-#create sh file
-cat > purpur-mc.sh <<EOF
+#create a script
+cat > $server_type-mc.sh <<EOF
+#!/bin/sh
+#start , stop , restart , status, console using screen
+\$SCREEN_NAME="\$S SCREEN_NAME"
 
 case "\$1" in
-  start)
-    screen -q -S \$SCREEN_NAME -dm \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui
-    echo "Server started."
-    ;;
-  stop)
-    if pgrep -f \$SCREEN_NAME > /dev/null
+    start)
+        screen -dmS \$SCREEN_NAME java -Xmx1024M -Xms1024M -jar \$server_type.jar nogui
+        echo "Server started"
+        echo "To view the console type ./\$server_type-mc.sh console"
+        ;;
+    stop)
+        if pgrep -f \$SCREEN_NAME > /dev/null
     then
         pkill -f \$SCREEN_NAME
+        echo "Server stopped"
     else
         echo "Server is not currently running."
     fi
-    ;;
-  restart)
-    \$0 stop
-    sleep 2
-    \$0 start
-    ;;
-  status)
-    if pgrep -f \$SCREEN_NAME > /dev/null
+        ;;
+    restart)
+        \$0 stop
+        sleep 2
+        \$0 start
+        ;;
+    status)
+        if pgrep -f \$SCREEN_NAME > /dev/null
     then
         echo "Server is running."
     else
         echo "Server is not currently running."
     fi
-    ;;
-  console)
-    screen -r \$SCREEN_NAME
-    ;;
-  *)
-    echo "Usage: \$0 {start|stop|restart|status|console}"
-    exit 1
-    ;;
+        ;;
+    console)
+        screen -r \$SCREEN_NAME
+        ;;
+    *)
+        echo "Usage: \$0 {start|stop|restart|status|console}"
+        exit 1
+        ;;
 esac
+
 EOF
-chmod +x purpur-mc.sh
+
+
