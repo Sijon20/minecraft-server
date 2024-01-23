@@ -5,6 +5,9 @@ SERVER_OPTS=""
 SCREEN_NAME="script"
 JAVA_EXECUTABLE="java" # Make sure to set this to your Java path
 
+mkdir server
+cd server
+
 # Function to check if screen is installed
 function check_screen {
     if ! command -v screen &> /dev/null
@@ -70,27 +73,29 @@ cat > eula.txt <<EOF
 eula=true
 EOF
 
+#create sh file
+cat > purpur-mc.sh <<EOF
 
-case "$1" in
+case "\$1" in
   start)
-    screen -q -S $SCREEN_NAME -dm $JAVA_EXECUTABLE -Xmx2G -jar $PURPUR_JAR $SERVER_OPTS nogui
+    screen -q -S \$SCREEN_NAME -dm \$JAVA_EXECUTABLE -Xmx2G -jar \$PURPUR_JAR \$SERVER_OPTS nogui
     echo "Server started."
     ;;
   stop)
-    if pgrep -f $SCREEN_NAME > /dev/null
+    if pgrep -f \$SCREEN_NAME > /dev/null
     then
-        pkill -f $SCREEN_NAME
+        pkill -f \$SCREEN_NAME
     else
         echo "Server is not currently running."
     fi
     ;;
   restart)
-    $0 stop
+    \$0 stop
     sleep 2
-    $0 start
+    \$0 start
     ;;
   status)
-    if pgrep -f $SCREEN_NAME > /dev/null
+    if pgrep -f \$SCREEN_NAME > /dev/null
     then
         echo "Server is running."
     else
@@ -98,10 +103,12 @@ case "$1" in
     fi
     ;;
   console)
-    screen -r $SCREEN_NAME
+    screen -r \$SCREEN_NAME
     ;;
   *)
-    echo "Usage: $0 {start|stop|restart|status|console}"
+    echo "Usage: \$0 {start|stop|restart|status|console}"
     exit 1
     ;;
 esac
+EOF
+chmod +x purpur-mc.sh
