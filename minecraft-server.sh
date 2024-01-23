@@ -50,7 +50,7 @@ then
     echo "Enter the paper build "
     read server_build
     #download the paper jar
-    wget https://api.papermc.io/v2/projects/paper/versions/$server_version/builds/$server_build/downloads/paper-$server_version-$server_build.jar -O paper.jar
+    wget https://api.papermc.io/v2/projects/paper/versions/$server_version/builds/$server_build/downloads/paper-$server_version-$server_build.jar -O server.jar
 fi
 #check if server type is spigot
 if [ $server_type = "spigot" ]
@@ -59,13 +59,13 @@ then
     echo "Enter the spigot version "
     read server_version
     #download the spigot jar
-    wget https://download.getbukkit.org/spigot/spigot-$server_version.jar -O spigot.jar
+    wget https://download.getbukkit.org/spigot/spigot-$server_version.jar -O server.jar
 
 fi
 if [ $server_type = "vanilla" ]
 then
     #download the vanilla jar
-    wget https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar -O vanilla.jar
+    wget https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar -O server.jar
 fi
 #check if server type is invalid
 if [ $server_type != "purpur" ] && [ $server_type != "paper" ] && [ $server_type != "spigot" ] && [ $server_type != "vanilla" ]
@@ -87,11 +87,12 @@ cat > $server_type-mc.sh <<EOF
 #start , stop , restart , status, console using screen
 \$SCREEN_NAME="server-console"
 
+
 case "\$1" in
     start)
-        screen -dmS \$SCREEN_NAME java -Xmx1024M -Xms1024M -jar \$server_type.jar nogui
+        screen -dmS \$SCREEN_NAME java -Xmx1024M -Xms1024M -jar server.jar nogui
         echo "Server started"
-        echo "To view the console type ./\$server_type-mc.sh console"
+        echo "To view the console type ./server_type-mc.sh console"
         ;;
     stop)
         if pgrep -f \$SCREEN_NAME > /dev/null
