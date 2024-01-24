@@ -6,7 +6,6 @@ case "$1" in
         screen -dmS console java -Xmx1024M -Xms1024M -jar server.jar nogui
         echo "Server started"
         echo "To view the console type ./server_type-mc.sh console"
-        tail -f /dev/null
         
         ;;
     stop)
