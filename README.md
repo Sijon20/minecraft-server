@@ -21,7 +21,7 @@ Before using this script, ensure that the following dependencies are installed:
 2. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/Sijon20/minecraft-server
    cd your-repository
    ```
    or
